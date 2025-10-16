@@ -1,7 +1,7 @@
 # backend/app.py
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-import google.generativeai as genai
+from google import genai  # Use 'from google import genai'
 import json
 import typing_extensions as typing
 from google.genai.types import GenerateContentConfig
@@ -21,8 +21,8 @@ app.add_middleware(
 # ---------------------------
 # 🧠 Gemini Config
 # ---------------------------
-API_KEY = "AIzaSy..."  # <-- replace with your actual key
-client = genai.Client(api_key=API_KEY)
+# API_KEY = "AIzaSy..."  # <-- replace with your actual key
+client = genai.Client(api_key="AIzaSyD3p7Ygc0TJAFwhkBTE-cSgZn9HOWoXP5g")
 
 # Define schema for structured output
 class MCQ_Schema(typing.TypedDict):
@@ -48,7 +48,10 @@ def home():
 async def predict(request: Request):
     """Generate an MCQ based on topic sent from frontend."""
     data = await request.json()
-    topic = data.get("topic", "Pakistan Studies — Independence Movement")
+    topic = data.get("topic")
+    if not topic:
+        return {"error": "Topic is required"}
+
 
     # Create prompt dynamically from frontend topic
     prompt = f"""

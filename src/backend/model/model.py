@@ -1,4 +1,4 @@
-import google.generativeai as genai
+from google import genai  # Use 'from google import genai'
 import json
 import typing_extensions as typing # Required for TypedDict
 from google.genai.types import GenerateContentConfig # Required for config
@@ -19,7 +19,7 @@ class MCQ_Schema(typing.TypedDict):
 # The client will automatically pick up the GEMINI_API_KEY environment variable.
 # genai.configure(api_key="AIzaSy") # You might prefer client = genai.Client()
 
-client = genai.Client(api_key="AIzaSy") 
+client = genai.Client(api_key="AIzaSyD3p7Ygc0TJAFwhkBTE-cSgZn9HOWoXP5g")
 
 # Define the prompt (can be simplified as the schema takes care of formatting)
 prompt = """

@@ -5,6 +5,7 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  generateMCQ();
 
   return (
     <>
@@ -31,5 +32,17 @@ function App() {
     </>
   )
 }
+
+async function generateMCQ() {
+  const res = await fetch("http://localhost:8000/predict", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ topic: "World War II" }),
+  });
+
+  const data = await res.json();
+  console.log("MCQ:", data);
+}
+
 
 export default App
