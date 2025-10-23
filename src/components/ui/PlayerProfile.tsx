@@ -48,7 +48,7 @@ export default function PlayerProfile({ playerStats }: PlayerProfileProps) {
                 rotateSpeed={1.0}             // Mouse rotation speed (higher = faster)
 
                 // Auto-rotation
-                autoRotate={true}             // Auto-rotate when not interacting
+                autoRotate={false}             // Auto-rotate when not interacting
                 autoRotateSpeed={2}           // Auto-rotation speed
 
                 // Limits
