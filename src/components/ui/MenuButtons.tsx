@@ -1,4 +1,4 @@
-import { useState } from 'react';
+
 import { motion } from 'framer-motion';
 import { Swords, Trophy, BookOpen, Settings } from 'lucide-react';
 import { itemVariants } from '../../constants/animations';
@@ -12,6 +12,7 @@ interface MenuButtonsProps {
 export default function MenuButtons({ onSettingsClick, onMatchFound }: MenuButtonsProps) {
 const { userId } = useUser(); // ✅ Get userId from context
   const handleStartBattle = async () => {
+    console.log("starthere")
     //TODO: I am here
     await findMatchmakingUsers('ehti', userId??'');
   console.log("Battle started!");
