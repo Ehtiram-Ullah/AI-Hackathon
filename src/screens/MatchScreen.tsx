@@ -5,7 +5,7 @@ import char from "../assets/character/char.png";
 import PlayerCard from "../components/PlayerCard";
 
 
-export default function MatchScreen({ playerName, enemyName }: { playerName: string; enemyName: string }) {
+export default function MatchScreen({ playerName, enemyName, topic }: { playerName: string; enemyName: string; topic: string }) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState(30);
   const [loading, setLoading] = useState(true);
@@ -15,7 +15,7 @@ export default function MatchScreen({ playerName, enemyName }: { playerName: str
   const [enemyScore, setEnemyScore] = useState(0);
   const [answered, setAnswered] = useState(false);
 
-  const topic = "General Knowledge";
+
 
   // Helper: normalize different possible shapes from generateMCQ
   function normalizeQuestion(raw: any) {

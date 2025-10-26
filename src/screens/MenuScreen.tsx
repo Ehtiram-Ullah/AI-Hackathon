@@ -5,7 +5,7 @@ import QuickStats from "../components/ui/QuickStats";
 import type { PlayerStats } from "../types";
 import { containerVariants, itemVariants } from "../constants/animations";
 
-export default function MenuScreen({ playerStats, onStartMatch, onSettings }: { playerStats: PlayerStats; onStartMatch: () => void; onSettings: () => void }) {
+export default function MenuScreen({ playerStats, onStartMatch, onSelectTopic, selectedTopic }: { playerStats: PlayerStats; onStartMatch: () => void; onSelectTopic: ()=>void; selectedTopic: string|null }) {
   return (
     <motion.div
       variants={containerVariants}
@@ -30,7 +30,7 @@ export default function MenuScreen({ playerStats, onStartMatch, onSettings }: { 
           </p>
         </motion.div>
 
-        <MenuButtons onSettingsClick={onSettings} onMatchFound={onStartMatch} />
+        <MenuButtons onMatchFound={onStartMatch} onSelectTopic={onSelectTopic} selectedTopic={selectedTopic} />
         <QuickStats />
       </motion.div>
     </motion.div>

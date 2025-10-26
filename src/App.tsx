@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import Background from "./components/layout/Background";
 import TopBar from "./components/ui/TopBar";
-import SettingsModal from "./components/ui/SettingsModal";
 import type { PlayerStats } from "./types";
 import RegisterScreen from "./screens/RegisterScreen";
 import MenuScreen from "./screens/MenuScreen";
@@ -9,14 +8,17 @@ import MatchmakingScreen from "./screens/MatchmakingScreen";
 import LoadingScreen from "./screens/LoadingScreen";
 import MatchScreen from "./screens/MatchScreen";
 import VersusScreen from "./screens/VersusScreen";
+import TopicModal from "./components/ui/TopicModel";
 
 
 export default function App() {
   const [playerStats, setPlayerStats] = useState<PlayerStats | null>(null);
   const [screen, setScreen] = useState<"register" | "menu" | "matchmaking" | "loading" | "versus" | "match">("register");
   const [musicEnabled, setMusicEnabled] = useState(true);
-  const [showSettings, setShowSettings] = useState(false);
   const [enemyName, setEnemyName] = useState("");
+
+    const [showTopicModal, setShowTopicModal] = useState(false);
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
 
   // 🎯 Flow control (auto-switch screens)
   useEffect(() => {
@@ -64,23 +66,30 @@ export default function App() {
 
       {screen === "menu" && playerStats && (
         <MenuScreen
-          playerStats={playerStats}
+         playerStats={playerStats}
           onStartMatch={() => setScreen("matchmaking")}
-          onSettings={() => setShowSettings(true)}
-        />
+       
+        onSelectTopic={() => setShowTopicModal(true)}
+        selectedTopic={selectedTopic}
+        
+      />
       )}
 
       {screen === "matchmaking" && <MatchmakingScreen />}
       {screen === "loading" && <LoadingScreen />}
       {screen === "versus" && playerStats && <VersusScreen playerName={playerStats.name} enemyName={enemyName} />}
-      {screen === "match" && playerStats && <MatchScreen playerName={playerStats.name} enemyName={enemyName} />}
+      {screen === "match" && playerStats && <MatchScreen playerName={playerStats.name} enemyName={enemyName} topic={selectedTopic??'Math'} />}
 
-      <SettingsModal
-        isOpen={showSettings}
-        musicEnabled={musicEnabled}
-        onClose={() => setShowSettings(false)}
-        onToggleMusic={() => setMusicEnabled(!musicEnabled)}
-      />
+  
+       {showTopicModal && (
+        <TopicModal
+          onSelect={(topic) => {
+            setSelectedTopic(topic);
+            setShowTopicModal(false);
+          }}
+          onClose={() => setShowTopicModal(false)}
+        />
+      )}
     </div>
   );
 }
