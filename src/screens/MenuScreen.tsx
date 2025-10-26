@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import PlayerProfile from "../components/ui/PlayerProfile";
 import MenuButtons from "../components/ui/MenuButtons";
-import QuickStats from "../components/ui/QuickStats";
+// import QuickStats from "../components/ui/QuickStats";
 import type { PlayerStats } from "../types";
 import { containerVariants, itemVariants } from "../constants/animations";
 
@@ -31,7 +31,7 @@ export default function MenuScreen({ playerStats, onStartMatch, onSelectTopic, s
         </motion.div>
 
         <MenuButtons onMatchFound={onStartMatch} onSelectTopic={onSelectTopic} selectedTopic={selectedTopic} />
-        <QuickStats />
+        {/* <QuickStats /> */}
       </motion.div>
     </motion.div>
   );
