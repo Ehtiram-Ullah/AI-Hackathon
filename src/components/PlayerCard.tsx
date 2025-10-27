@@ -2,6 +2,11 @@
 
 export default function PlayerCard({ name,playerHealth, sprite, isPlayer }
   : { name: string; sprite: string; isPlayer: boolean;playerHealth:number }) {
+    function getHealthColor(health: number) {
+  if (health > 70) return "#22c55e";     // Green (Tailwind green-500)
+  if (health > 40) return "#eab308";     // Yellow (Tailwind yellow-500)
+  return "#ef4444";                      // Red (Tailwind red-500)
+}
   return (
     <div className="flex flex-col items-center">
       <div className={`w-20 h-20 rounded-lg flex items-center justify-center mb-2 border-2 ${
@@ -17,7 +22,7 @@ export default function PlayerCard({ name,playerHealth, sprite, isPlayer }
   {/* INNER HEALTH BAR */}
   <div
     className={`h-full rounded-full ${isPlayer ? "bg-purple-500" : "bg-red-500"}`}
-    style={{ width: `${playerHealth}%` }} // ✅ percentage added
+    style={{ width: `${playerHealth}%`,backgroundColor: getHealthColor(playerHealth), }} // ✅ percentage added
   />
 
   {/* HEALTH PERCENTAGE TEXT */}

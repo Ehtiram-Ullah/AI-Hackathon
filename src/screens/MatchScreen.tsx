@@ -157,7 +157,14 @@ export default function MatchScreen({ playerName, enemyName, topic }:
 
     const isCorrect = optionKey === question.correct;
     if (isCorrect) {
-      setEnemyHealth(prev => Math.max(0, prev - 10));
+      if(timeLeft>=25){
+       setEnemyHealth(prev => Math.max(0, prev - 30));
+      } else if (timeLeft>=15){
+        setEnemyHealth(prev => Math.max(0, prev - 15));
+      } else{
+         setEnemyHealth(prev => Math.max(0, prev - 10));
+      }
+  
     } else {
       // Enemy gets points when player is wrong
       setPlayerHealth(prev => Math.max(0, prev - 10));
