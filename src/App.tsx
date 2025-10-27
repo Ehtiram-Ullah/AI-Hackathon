@@ -30,7 +30,7 @@ export default function App() {
       // Pick random enemy from 20 players
       const players = Array.from({ length: 19 }, (_, i) => `Player_${String(i + 2).padStart(3, '0')}`);
       setEnemyName(players[Math.floor(Math.random() * players.length)]);
-      const t = setTimeout(() => setScreen("versus"), 60000);
+      const t = setTimeout(() => setScreen("versus"), 10000);
       return () => clearTimeout(t);
     }
     if (screen === "versus") {
@@ -42,6 +42,7 @@ export default function App() {
   const handleRegistration = (name: string) => {
     setPlayerStats({
       name: name,
+      playerHealth:100,
       level: 1,
       currentXP: 0,
       maxXP: 1000,
@@ -78,7 +79,9 @@ export default function App() {
       {screen === "matchmaking" && <MatchmakingScreen />}
       {screen === "loading" && <LoadingScreen />}
       {screen === "versus" && playerStats && <VersusScreen playerName={playerStats.name} enemyName={enemyName} />}
-      {screen === "match" && playerStats && <MatchScreen playerName={playerStats.name} enemyName={enemyName} topic={selectedTopic??'Math'} />}
+      {screen === "match" && playerStats && <MatchScreen
+       playerName={playerStats.name} 
+        enemyName={enemyName} topic={selectedTopic??'Math'} />}
 
   
        {showTopicModal && (

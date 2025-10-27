@@ -21,7 +21,7 @@ export async function createUser(userData: UserData): Promise<string | null> {
     // Store user data
     await set(newUserRef, {
       name: userData.name,
-
+      
       createdAt: userData.createdAt,
 
     });
@@ -52,7 +52,7 @@ export async function findMatchmakingUsers(topic: string, userId: string, limit:
       for (const [key, match] of Object.entries<any>(data)) {
         const userCount = match.users ? Object.keys(match.users).length : 0;
         const elapsed = now - match.timestamp;
-        const duration = 60 * 1000; // 60 seconds
+        const duration = 10 * 1000; // 60 seconds
         const isNotExpired = elapsed < duration;
 
         if (match.topic === topic && isNotExpired && userCount < limit) {
@@ -74,7 +74,7 @@ export async function findMatchmakingUsers(topic: string, userId: string, limit:
       // 🆕 Create a new matchmaking session
       const newMatchRef = push(matchmakingRef);
       const matchId = newMatchRef.key!;
-      const duration = 60 * 1000;
+      const duration = 10 * 1000;
 
       await set(newMatchRef, {
         topic,

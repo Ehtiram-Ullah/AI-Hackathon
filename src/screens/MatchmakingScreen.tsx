@@ -7,7 +7,7 @@ export default function MatchmakingScreen() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.2 }}
       className="relative z-10 flex flex-col items-center justify-center w-full h-[70vh] max-w-3xl space-y-8"
     >
       <div className="text-3xl font-bold text-purple-400">🔍 Matching Players...</div>

@@ -5,15 +5,16 @@ import char from "../assets/character/char.png";
 import PlayerCard from "../components/PlayerCard";
 
 
-export default function MatchScreen({ playerName, enemyName, topic }: { playerName: string; enemyName: string; topic: string }) {
+export default function MatchScreen({ playerName, enemyName, topic }:
+   { playerName: string; enemyName: string; topic: string; }) {
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [timeLeft, setTimeLeft] = useState(30);
   const [loading, setLoading] = useState(true);
   const [question, setQuestion] = useState<any>(null);
   const [currentQuestion, setCurrentQuestion] = useState(1);
-  const [playerScore, setPlayerScore] = useState(0);
-  const [enemyScore, setEnemyScore] = useState(0);
   const [answered, setAnswered] = useState(false);
+  const [playerHealth, setPlayerHealth] = useState(100);
+  const [enemyHealth, setEnemyHealth] = useState(100);
 
 
 
@@ -144,7 +145,6 @@ export default function MatchScreen({ playerName, enemyName, topic }: { playerNa
     if (answered) return;
     setAnswered(true);
     // Enemy scores when player doesn't answer in time
-    setEnemyScore(prev => prev + 100);
     setTimeout(nextQuestion, 2000);
   };
 
@@ -157,17 +157,15 @@ export default function MatchScreen({ playerName, enemyName, topic }: { playerNa
 
     const isCorrect = optionKey === question.correct;
     if (isCorrect) {
-      const points = Math.max(50, timeLeft * 10);
-      setPlayerScore(prev => prev + points);
+      setEnemyHealth(prev => Math.max(0, prev - 10));
     } else {
       // Enemy gets points when player is wrong
-      setEnemyScore(prev => prev + 100);
+      setPlayerHealth(prev => Math.max(0, prev - 10));
     }
 
     // Simulate enemy answering (50% chance to be correct)
     if (Math.random() > 0.5 && !isCorrect) {
       setTimeout(() => {
-        setEnemyScore(prev => prev + Math.floor(Math.random() * 150 + 50));
       }, 500);
     }
 
@@ -177,7 +175,7 @@ export default function MatchScreen({ playerName, enemyName, topic }: { playerNa
   const nextQuestion = () => {
     if (currentQuestion >= 10) {
       // End game
-      alert(`Game Over!\nYour Score: ${playerScore}\nEnemy Score: ${enemyScore}`);
+      alert(`Game Over!`);
       return;
     }
     setCurrentQuestion(prev => prev + 1);
@@ -192,7 +190,7 @@ export default function MatchScreen({ playerName, enemyName, topic }: { playerNa
     >
       {/* Top Section: Player Cards & Timer */}
       <div className="flex justify-between w-full items-center mb-6">
-        <PlayerCard name={playerName} sprite={char} isPlayer />
+        <PlayerCard name={playerName} sprite={char} isPlayer playerHealth={playerHealth}/>
         <div className="flex flex-col items-center">
           <div className="text-5xl font-black text-pink-400 mb-2">{timeLeft}s</div>
           <div className="w-32 h-2 bg-gray-700 rounded-full overflow-hidden">
@@ -204,7 +202,7 @@ export default function MatchScreen({ playerName, enemyName, topic }: { playerNa
             />
           </div>
         </div>
-        <PlayerCard name={enemyName} sprite={char} isPlayer={false} />
+        <PlayerCard name={enemyName} sprite={char} isPlayer={false} playerHealth={enemyHealth} />
       </div>
 
       {/* Question Card */}
@@ -256,8 +254,8 @@ export default function MatchScreen({ playerName, enemyName, topic }: { playerNa
           </div>
         </div>
       )}
-
-      {/* Score Display */}
+{/* 
+      {/* Score Display }
       <div className="flex gap-4 w-full justify-center">
         <div className="bg-purple-900/50 px-6 py-3 rounded-lg border border-purple-500/50">
           <span className="text-purple-300 font-semibold">Your Score: </span>
@@ -267,7 +265,8 @@ export default function MatchScreen({ playerName, enemyName, topic }: { playerNa
           <span className="text-red-300 font-semibold">Enemy Score: </span>
           <span className="text-white font-bold text-xl">{enemyScore}</span>
         </div>
-      </div>
+      </div> **/}
+
     </motion.div>
   );
 }

@@ -4,6 +4,7 @@ export interface PlayerStats {
   currentXP: number;
   maxXP: number;
   coins: number;
+  playerHealth: number;
 }
 
 export interface MenuButton {

@@ -1,6 +1,7 @@
 
 
-export default function PlayerCard({ name, sprite, isPlayer }: { name: string; sprite: string; isPlayer: boolean }) {
+export default function PlayerCard({ name,playerHealth, sprite, isPlayer }
+  : { name: string; sprite: string; isPlayer: boolean;playerHealth:number }) {
   return (
     <div className="flex flex-col items-center">
       <div className={`w-20 h-20 rounded-lg flex items-center justify-center mb-2 border-2 ${
@@ -12,10 +13,18 @@ export default function PlayerCard({ name, sprite, isPlayer }: { name: string; s
           className={`w-16 h-16 pixelated ${!isPlayer ? "flipped" : ""}`}
         />
       </div>
-      <p className={`text-sm font-bold ${isPlayer ? "text-purple-300" : "text-red-300"}`}>{name}</p>
-      <div className="w-24 h-2 bg-gray-700 rounded-full mt-2">
-        <div className={`h-full rounded-full ${isPlayer ? "bg-purple-500" : "bg-red-500"}`} style={{ width: "100%" }} />
-      </div>
+<div className="w-24 h-2 bg-gray-700 rounded-full mt-2 relative">
+  {/* INNER HEALTH BAR */}
+  <div
+    className={`h-full rounded-full ${isPlayer ? "bg-purple-500" : "bg-red-500"}`}
+    style={{ width: `${playerHealth}%` }} // ✅ percentage added
+  />
+
+  {/* HEALTH PERCENTAGE TEXT */}
+  <span className="absolute inset-0 flex items-center justify-center text-[10px] font-bold text-white">
+    {playerHealth}%
+  </span>
+</div>
     </div>
   );
 }

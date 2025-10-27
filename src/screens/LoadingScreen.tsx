@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 export default function LoadingScreen() {
   
 
-  const [timeLeft, setTimeLeft] = useState(60);
+  const [timeLeft, setTimeLeft] = useState(10);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,7 +30,7 @@ export default function LoadingScreen() {
           className="h-full bg-gradient-to-r from-purple-500 to-pink-500"
           initial={{ width: "100%" }}
           animate={{ width: "0%" }}
-          transition={{ duration: 60, ease: "linear" }}
+          transition={{ duration: 10, ease: "linear" }}
         />
       </motion.div>
     </motion.div>
