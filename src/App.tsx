@@ -79,7 +79,7 @@ export default function App() {
       {screen === "matchmaking" && <MatchmakingScreen />}
       {screen === "loading" && <LoadingScreen />}
       {screen === "versus" && playerStats && <VersusScreen playerName={playerStats.name} enemyName={enemyName} />}
-      {screen === "match" && playerStats && <MatchScreen
+      {screen === "match" && playerStats && <MatchScreen onBackToMenu={() => setScreen("menu")}
        playerName={playerStats.name} 
         enemyName={enemyName} topic={selectedTopic??'Math'} />}
 

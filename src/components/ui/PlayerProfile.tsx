@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+// import { Canvas } from '@react-three/fiber';
 import { Crown } from 'lucide-react';
-import RealisticCharacter from '../3d/RealisticCharacter';
+import char from "../../assets/character/char.png";
+// import RealisticCharacter from '../3d/RealisticCharacter';
 import type { PlayerStats } from '../../types';
 import { itemVariants } from '../../constants/animations';
 
@@ -24,54 +24,13 @@ export default function PlayerProfile({ playerStats }: PlayerProfileProps) {
       >
         <div className="w-full h-full rounded-full bg-gradient-to-br from-purple-600 via-pink-600 to-purple-800 p-1 shadow-2xl shadow-purple-500/50">
           <div className="w-full h-full rounded-full bg-gray-900 overflow-hidden">
-            <Canvas
-              shadows
-              camera={{ position: [0, 0.3, 2.5], fov: 45 }}
-              gl={{ antialias: true }}
-            >
-              <color attach="background" args={['#111827']} />
-              <ambientLight intensity={0.6} />
-              <directionalLight
-                position={[3, 4, 5]}
-                intensity={1.2}
-                castShadow
-                shadow-mapSize-width={2048}
-                shadow-mapSize-height={2048}
-              />
-              <pointLight position={[-3, 2, 3]} intensity={0.8} color="#ec4899" />
-              <pointLight position={[3, -2, -3]} intensity={0.8} color="#8b5cf6" />
-              <spotLight position={[0, 5, 0]} angle={0.5} penumbra={1} intensity={0.5} castShadow />
-              <RealisticCharacter />
-              <OrbitControls
-                // Rotation
-                enableRotate={true}           // Enable/disable mouse rotation
-                rotateSpeed={1.0}             // Mouse rotation speed (higher = faster)
+           <img
+      
+  src={char}
+  alt={playerStats.name}
+  className="w-full h-full object-cover rounded-full"
+/>
 
-                // Auto-rotation
-                autoRotate={true}             // Auto-rotate when not interacting
-                autoRotateSpeed={2}           // Auto-rotation speed
-
-                // Limits
-                minPolarAngle={Math.PI / 2.5}  // Top limit
-                maxPolarAngle={Math.PI / 1.8}  // Bottom limit
-                minAzimuthAngle={-Infinity}    // Left rotation limit (default: unlimited)
-                maxAzimuthAngle={Infinity}     // Right rotation limit (default: unlimited)
-
-                // Smooth movement
-                enableDamping={true}          // Smooth inertia
-                dampingFactor={0.05}          // Smoothness (0.05 = smooth, 0.1 = less smooth)
-
-                // Zoom & Pan
-                enableZoom={false}            // Disable scroll zoom
-                enablePan={false}             // Disable panning
-
-                // // Touch
-                // touches={{
-                //   ONE: THREE.TOUCH.ROTATE,    // One finger = rotate
-                //   TWO: THREE.TOUCH.DOLLY_PAN  // Two fingers = zoom/pan
-                // }}
-              />
-            </Canvas>
           </div>
         </div>
         <motion.div
