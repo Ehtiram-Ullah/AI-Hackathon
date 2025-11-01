@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 // import { Canvas } from '@react-three/fiber';
-import { Crown } from 'lucide-react';
 import char from "../../assets/character/char.png";
 // import RealisticCharacter from '../3d/RealisticCharacter';
 import type { PlayerStats } from '../../types';

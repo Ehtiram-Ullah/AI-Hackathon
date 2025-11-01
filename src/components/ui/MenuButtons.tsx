@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Swords, Trophy, BookOpen, Settings, X, Sparkles } from "lucide-react";
+import { Swords,  BookOpen, X, Sparkles } from "lucide-react";
 import { itemVariants } from "../../constants/animations";
 import { findMatchmakingUsers } from "../../services/firebase_service";
 import { useUser } from "../../context/UserContext";
