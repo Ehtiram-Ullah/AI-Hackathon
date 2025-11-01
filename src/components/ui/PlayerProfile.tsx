@@ -33,14 +33,7 @@ export default function PlayerProfile({ playerStats }: PlayerProfileProps) {
 
           </div>
         </div>
-        <motion.div
-          animate={{ rotate: 360 }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'linear' }}
-          className="absolute inset-0 rounded-full border-4 border-transparent border-t-purple-500 border-r-pink-500"
-        />
-        <div className="absolute -top-2 -right-2 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full p-2 border-4 border-gray-900 shadow-lg">
-          <Crown className="w-6 h-6 text-gray-900" />
-        </div>
+ 
       </motion.div>
 
       {/* Player Info */}

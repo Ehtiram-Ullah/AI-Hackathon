@@ -93,3 +93,15 @@ export async function findMatchmakingUsers(topic: string, userId: string, limit:
     return null;
   }
 }
+
+// export async function getQuizQuestions(matchId:String){
+//   try {
+//     const questionsRef = ref(db, `quizzes/${matchId}`);
+//     const snapshot = await get(questionsRef);
+//     if (snapshot.exists()) {
+//       return snapshot.val();
+//     } else {
+//       console.log("No quiz questions found for match:", matchId);
+//       return null;
+//     }
+// }}
